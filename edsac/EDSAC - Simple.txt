@@ -1,0 +1,124 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[31:]T %END% S
+[32:]Z0S
+[33:]T0S
+[34:]E %INNER_LOOP% S [Пропускаем первый инкремент значения]
+[35:]T0S $OUTER_LOOP$			[\\]
+[36:]A %OUTER_LOOP_COUNTER% S    [\\ Увеличиваем значение счетчика на 1]
+[37:]A %CONST_ONE% S				[\\]
+[38:]U %OUTER_LOOP_COUNTER% S	[\\]
+[39:]S %ARRAY_SIZE% S  [Реализация простой сортировки пузырьком]
+[40:]E %RETURN% S [ Если отсортировали массив, возвращаем значение]
+[41:]T0S
+[42:]T %INNER_LOOP_COUNTER% S 
+[43:]A %INNER_LOOP_COUNTER% S $INNER_LOOP$
+[44:]A %ARRAY_POINTER% S
+[45:]L0L
+[46:]A %READ_ADD% S 
+[47:]T %COMPARE_COMMAND_ADD% S [Первая комманда сравения] 
+[48:]A %CONST_ONE% S
+[49:]A %INNER_LOOP_COUNTER% S
+[50:]A %ARRAY_POINTER% S
+[51:]L0L
+[52:]A %READ_SUB% S 
+[53:]T %COMPARE_COMMAND_SUB% [Вторая комманда вычитания]
+[54:]X0S $COMPARE_COMMAND_ADD$
+[55:]X0S $COMPARE_COMMAND_SUB$
+[56:]E %SWAP_FUNC% S [Меняем местами два элемента]
+[57:]T0S $SWAP_RETURN$			[\\]
+[58:]A %INNER_LOOP_COUNTER% S	[\\ Увеличиваем значение счетчика на 1]
+[59:]A %CONST_ONE% S             [\\]
+[60:]T %INNER_LOOP_COUNTER% S    [\\]
+[61:]A %ARRAY_SIZE% S 		
+[62:]S %INNER_LOOP_COUNTER% S
+[63:]S %CONST_TWO% S
+[64:]G %OUTER_LOOP% S [Выходим из внутреннего цикла, если счетчик равен размеру массива - 1]
+[65:]T0S
+[66:]E %INNER_LOOP% S [Прыгаем на начало внутренного цикла(безусловно)]
+[67:]T0S $SWAP_FUNC$ [Функция SWAP]
+[68:]A %INNER_LOOP_COUNTER% S 
+[69:]A %ARRAY_POINTER% S
+[70:]L0L
+[71:]A %READ_ADD% S
+[72:]T %LOAD_FIRST% S
+[73:]A %INNER_LOOP_COUNTER% S
+[74:]A %CONST_ONE% S
+[75:]A %ARRAY_POINTER% S
+[76:]L0L
+[77:]A %READ_ADD% S
+[78:]T %LOAD_SECOND% S
+[79:]A %INNER_LOOP_COUNTER% S
+[80:]A %CONST_ONE% S
+[81:]A %ARRAY_POINTER% S
+[82:]L0L
+[83:]A %WRITE% S
+[84:]T %WRITE_FIRST% S
+[85:]A %INNER_LOOP_COUNTER% S
+[86:]A %ARRAY_POINTER% S
+[87:]L0L
+[88:]A %WRITE% S
+[89:]T %WRITE_SECOND% S
+[90:]X0S $LOAD_FIRST$
+[91:]T %EMPTY_WORD% S
+[92:]X0S $LOAD_SECOND$
+[93:]X0S $WRITE_SECOND$
+[94:]A %EMPTY_WORD% S
+[95:]X0S $WRITE_FIRST$
+[96:]E %SWAP_RETURN% S [Возвращаемся из функции]
+[97:]A %ARRAY_POINTER% S $RETURN$
+[98:]A %K% S
+[99:]L0L
+[100:]A %READ_ADD% S
+[101:]T %LOAD_RETURN_VALUE% S
+[102:]X0S $LOAD_RETURN_VALUE$
+[103:]T %K_STATISTIC% S [Вовращаем значение]
+[104:]Z0S [Конец программы]
+[105:]X0S [---------------- Переменнные ----------------]
+[106:]T0S $WRITE$				    [//]
+[107:]A0S $READ_ADD$                [// Шаблоны функций]
+[108:]S0S $READ_SUB$                [//]
+[109:]P0L $CONST_ONE$           	[Константа - 1]
+[110:]P1S $CONST_TWO$          		[Константа - 2]
+[111:]P0S $EMPTY_WORD$              [Пустая ячейка]
+[112:]P0S $OUTER_LOOP_COUNTER$      [Внешний счетчик]
+[113:]P0S $INNER_LOOP_COUNTER$      [Внутренний счетчик]
+[114:]P1S $K$                       [K]
+[115:]P2L $ARRAY_SIZE$              [Размер массива]
+[116:]P 58 L $ARRAY_POINTER$        [Адрес массива]
+[117:]P30S $ARRAY_BEGIN$
+[118:]P20L
+[119:]P0S
+[120:]P1L
+[121:]P5S
+[122:]P0S [Пустое значение]
+[123:]P0S $K_STATISTIC$ [Возвращаемое значение]
+$END$
